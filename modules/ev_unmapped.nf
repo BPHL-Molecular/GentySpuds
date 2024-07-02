@@ -12,11 +12,11 @@ process unmapped_proc {
 
     script:
         """
-        mkdir -p ${params.ouput}/${samp}/unmappings # to check
-        samtools view -b -S ${params.ouput}/${samp}/mappings/${samp}.sam > ${params.ouput}/${samp}/unmappings/${samp}.bam
-        samtools view --threads $task.cpus -b -F 2 ${params.ouput}/${samp}/unmappings/${samp}.bam > ${params.ouput}/${samp}/unmappings/${samp}_unmapped.bam
-        samtools sort -n ${params.ouput}/${samp}/unmappings/${samp}_unmapped.bam -o ${params.ouput}/${samp}/unmappings/${samp}_umapped_sorted.bam
-        samtools bam2fq -1 ${params.ouput}/${samp}/unmappings/${samp}_1.fq -2 ${params.ouput}/${samp}/unmappings/${samp}_2.fq -0 /dev/null -s /dev/null -n ${params.ouput}/${samp}/unmappings/${samp}_umapped_sorted.bam
+        mkdir -p ${params.output}/${samp}/unmappings # to check
+        samtools view -b -S ${params.output}/${samp}/mappings/${samp}.sam > ${params.output}/${samp}/unmappings/${samp}.bam
+        samtools view --threads $task.cpus -b -F 2 ${params.output}/${samp}/unmappings/${samp}.bam > ${params.output}/${samp}/unmappings/${samp}_unmapped.bam
+        samtools sort -n ${params.output}/${samp}/unmappings/${samp}_unmapped.bam -o ${params.output}/${samp}/unmappings/${samp}_umapped_sorted.bam
+        samtools bam2fq -1 ${params.output}/${samp}/unmappings/${samp}_1.fq -2 ${params.output}/${samp}/unmappings/${samp}_2.fq -0 /dev/null -s /dev/null -n ${params.output}/${samp}/unmappings/${samp}_umapped_sorted.bam
         """
 }
 
