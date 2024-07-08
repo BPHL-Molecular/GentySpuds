@@ -69,7 +69,7 @@ L001R1Lst.each{
 //Step2: process the inputed data
 A = Channel.fromList(sampleNames)
 //A.view()
-B = Channel.fromPath(params.genome)
+//B = Channel.fromPath(params.genome) // referencee genome
 
 
 /*
