@@ -15,4 +15,12 @@ Enterovirus
 
 # Usage
 GentySpuds takes as input raw sequencing reads in FASTQ format, and can process gzipped files directly.
-nextflow run ev_gen_wf.nf -params-file params.yaml -resume 
+nextflow run ev_gen_wf.nf -params-file params.yaml -resum
+
+
+
+
+  
+
+
+\\e 
