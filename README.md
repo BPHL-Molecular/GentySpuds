@@ -1,6 +1,6 @@
 # GentySpuds
-A web-deployed pipeline to seek genotyping for Enterovirus
-Enterovirus
+A web-deployed pipeline to seek genotyping for Enterovirus.
+#An enterovirus is a small and enveloped mRNA virus.
 # Introduction
 Genotyping is a way of putting a virus into categories based on similar genes.
 Determining the genotype of viruses is important not only in epidemiology studies, but also for efficient vaccine development
