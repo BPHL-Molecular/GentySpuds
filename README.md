@@ -15,5 +15,5 @@ and treatment
 
 # Usage
 GentySpuds takes as input raw sequencing reads in FASTQ format, and can process gzipped files directly.
-nextflow run ev_gen_wf.nf -params-file params.yaml -resume
+nextflow run ev_gen_wf.nf -params-file params.yaml -resume  
 Make sure your all your fastq files are stored in one directory.
