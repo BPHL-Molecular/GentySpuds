@@ -1,8 +1,0 @@
-
-input     : "/full path/fastq directory" 
-output    : "/<full path store output files and directories>/output"
-#genome    : "/<full path to reference genome>/<your referencee>.fasta" # reference genome
-db        : "/<full path to kraken database>" # path to your kraken db
-blastevdb: "/<full path to>/<blast database>"
-evdbname: "<database name>"
-# Note: all the above parameters are absolute path
