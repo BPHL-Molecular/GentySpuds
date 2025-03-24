@@ -21,16 +21,16 @@ sequenceDiagram
     participant Phylogeny
     participant EV_type_classiffication
     participant Local_alignment
-    QC->>Reads_trimming
-    Reads_trimming->>Human_host_removal
+    QC->>Reads_trimming:Fastqc & Trimmomic
+    Reads_trimming->>Human_host_removal:sra_human_scrubber
     Human_host_removal->>QC: QC_report
-    QC->>Taxonomic_classification
-    QC->>Genome assembly
-    Genome_assembly->>Consensus_assembly
-    Consensus_assembly->>EV_type_classification
-    Consensus_assembly->>Local_alignment
-    Consensus_assembly->>Multiple_sequence_alignment
-    Multiple_sequence_alignment->>Phylogeny 
+    QC->>Taxonomic_classification:Kraken
+    QC->>Genome assembly:Skesa
+    Genome_assembly->>Consensus_assembly:Pilon
+    Consensus_assembly->>EV_type_classification:Kraken
+    Consensus_assembly->>Local_alignment:BLAST
+    Consensus_assembly->>Multiple_sequence_alignment:ClustaloW
+    Multiple_sequence_alignment->>Phylogeny:Iqtree & MegaX 
 ```
    
 # Software Tools implemented
