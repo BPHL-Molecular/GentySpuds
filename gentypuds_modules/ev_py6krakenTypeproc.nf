@@ -30,7 +30,7 @@ process kraken_gtypeproc {
                 break
         #f = open("${pyoutputs}", "a")
     with open("${pyoutputs}", "a") as fa:
-        fa.write(","+str(percent)+","+str(tax))
+        fa.write(","+str(tax)+","+str(percent))
         #f.close()
         
     """
