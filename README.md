@@ -13,7 +13,6 @@ sequenceDiagram
     participant QC
     participant Reads_trimming
     participant Human_host_removal
-    participant QC
     participant QC_eport
     participant Genome_assembly
     participant Consensus_assembly
@@ -24,7 +23,7 @@ sequenceDiagram
     participant Local_alignment
     QC->>Reads_trimming
     Reads_trimming->>Human_host_removal
-    Human_host_removal->> QC : QC_report
+    Human_host_removal->>QC: QC_report
     QC->>Taxonomic_classification
     QC->>Genome assembly
     Genome_assembly->>Consensus_assembly
