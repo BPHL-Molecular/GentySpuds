@@ -11,27 +11,27 @@ and treatment.
 ```mermaid
 sequenceDiagram
     participant QC
-    participant Reads trimming
-    participant Human host removal
+    participant Reads_trimming
+    participant Human_host_removal
     participant QC
-    participant QC report
-    participant Genome assembly
-    participant Consensus assembly
-    participant Taxonomic classification
-    participant Multiple sequence alignment
+    participant QC_eport
+    participant Genome_assembly
+    participant Consensus_assembly
+    participant Taxonomic_classification
+    participant Multiple_sequence_alignment
     participant Phylogeny
-    EV type classiffication
-    participant Local alignment
-    QC->>Reads trimming
-    Reads trimming->>Human host removal
-    Human host removal->> QC : QC report
-    QC->>Taxonomic classification
+    participant EV_type_classiffication
+    participant Local_alignment
+    QC->>Reads_trimming
+    Reads_trimming->>Human_host_removal
+    Human_host_removal->> QC : QC_report
+    QC->>Taxonomic_classification
     QC->>Genome assembly
-    Genome assembly->>Consensus assembly
-    Consensus assembly->>EV type classification
-    Consensus assembly->>Local alignment
-    Consensus assembly->>Multiple sequence alignment
-    Multiple sequence alignment->>Phylogeny 
+    Genome_assembly->>Consensus_assembly
+    Consensus_assembly->>EV_type_classification
+    Consensus_assembly->>Local_alignment
+    Consensus_assembly->>Multiple_sequence_alignment
+    Multiple_sequence_alignment->>Phylogeny 
 ```
    
 # Software Tools implemented
