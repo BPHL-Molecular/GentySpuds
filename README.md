@@ -8,7 +8,32 @@ Determining the genotype of viruses is important not only in epidemiology studie
 and treatment.       
 
 # Workflow
-
+```mermaid
+sequenceDiagram
+    participant QC
+    participant Reads trimming
+    participant Human host removal
+    participant QC
+    participant QC report
+    participant Genome assembly
+    participant Consensus assembly
+    participant Taxonomic classification
+    participant Multiple sequence alignment
+    participant Phylogeny
+    EV type classiffication
+    participant Local alignment
+    QC->>Reads trimming
+    Reads trimming->>Human host removal
+    Human host removal->> QC : QC report
+    QC->>Taxonomic classification
+    QC->>Genome assembly
+    Genome assembly->>Consensus assembly
+    Consensus assembly->>EV type classification
+    Consensus assembly->>Local alignment
+    Consensus assembly->>Multiple sequence alignment
+    Multiple sequence alignment->>Phylogeny 
+```
+   
 # Software Tools implemented
 FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, skesa, kraken, bwa, samtools, pilon, quast, Blast, clustalo, iqtree, MegaX etc. 
 
