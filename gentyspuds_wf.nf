@@ -4,12 +4,12 @@ nextflow.enable.dsl = 2
 
 /*
 ==================================================================================
-ev_gen
+GentySpuds
 A Workflow to identify genotypes of Enteroviruses
 ==================================================================================
 https://github.com/
 #### Author
-Tassy J. Bazile <tassy.bazile@flhealth.gov> - https://github.com/
+Tassy J. Bazile <tassy.bazile@flhealth.gov> - https://github.com/BPHL-Molecular/GentySpuds
 
 --------------------------------------------------------------------------------
 */

@@ -18,14 +18,14 @@ FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, skesa, kraken, bwa, s
 git clone https://github.com/BPHL-Molecular/GentySpuds.git
 ```
 ### Create your conda environment
-Use the provided gentyspuds_environment.yaml file to execute the command below, and environmment called GENTYSPUDS will be created.    
+Use the provided gentyspuds_environment.yaml file to execute the command below, and a conda environmment called GENTYSPUDS will be created.    
 ```
 conda env create -f gentyspuds_environment.yml
 ```
 
 # Usage
 GentySpuds takes as input raw sequencing reads in FASTQ format, and can process gzipped files directly.  
-Make sure your all your fastq files are stored in one directory. The databases are stored in the share drive in blue on HGP.
+Make sure your all your fastq files are stored in one directory. The databases are stored in the share drive in blue on HPG. <br />
 Activate the created conda environment <br />
 ```
 conda activate GENTYSPUDS
@@ -42,7 +42,7 @@ sbatch gentyspuds_jobScheduler.sh
 ``` 
 
 ## Overview of the arguments
-- nextflow is a workflow programming language that allows reproducibility, portability, scalability of large datassets analysis.
+- nextflow is a workflow programming language that allows reproducibility, portability, scalability of large datasets analysis.
 - gentyspuds_wf.nf is the main script workflow to run the pipeline.  
 - params.yaml indicates all the required input files along with their paths.
 The file params.yaml provides a convenient way to feed the workflow with the input data, especially when there are multiple parameters as it is the case.
