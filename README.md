@@ -9,7 +9,7 @@ and treatment.
 
 # Workflow
 ```mermaid
-flowchart LR
+sequenceDiagram
     participant QC
     participant Reads_trimming
     participant Human_host_removal
