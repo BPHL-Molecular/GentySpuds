@@ -35,7 +35,7 @@ The basic command to run the pipeline is set below. <br />
 nextflow run gentyspuds_wf.nf -params-file params.yaml -resume
 ```
 
-For efficiency, run the above command within suppplied sbatch script.
+For efficiency, run the above command within supplied sbatch script.
 
 ```
 sbatch gentyspuds_jobScheduler.sh
