@@ -20,16 +20,14 @@ conda env create -f gentyspuds_environment.yml
 
 # Usage
 GentySpuds takes as input raw sequencing reads in FASTQ format, and can process gzipped files directly.  
-nextflow run gentyspuds_wf.nf -params-file params.yaml -resume
-Indeed, the params.yaml contains all the required parameters.
 Make sure your all your fastq files are stored in one directory. The databases are stored in the share drive in blue on HGP.
-The params.yaml file indicates all the required input files along with their paths.
+nextflow run gentyspuds_wf.nf -params-file params.yaml -resume
 
 ## Overview of the arguments
 Nextflow is a worflow programming language that allows reproducibility, portability, scalability of large datassets analysis.
-
-gentyspuds_wf.nf is the main script workflow to run the pipeline.
-
+- gentyspuds_wf.nf is the main script workflow to run the pipeline.  
+- params.yaml indicates all the required input files along with their paths.
 The file params.yaml provides a convenient way to feed the workflow with the input data, especially when there are multiple parameters as it is the case.
 
 ## Pipeline Outputs
+The main output directory contains a sum-report file, which is table with the last column being the enterovirus genotypes for each sample. There is a subdirectory for each sample that stores various files including annotated phylogenetic trees, Blast alignment report, average nucleotide identity etc.
