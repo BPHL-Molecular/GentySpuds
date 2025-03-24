@@ -30,15 +30,22 @@ Activate the created conda environment <br />
 ```
 conda activate GENTYSPUDS
 ```
-Then run this command.  
+The basic command to run the pipeline is set below. <br />   
 ```
 nextflow run gentyspuds_wf.nf -params-file params.yaml -resume
 ```
+
+For efficiency, run the above command within sbatch script.
+
+```
+sbatch gentyspuds_jobScheduler.sh
+``` 
+
 ## Overview of the arguments
-Nextflow is a worflow programming language that allows reproducibility, portability, scalability of large datassets analysis.
+- nextflow is a workflow programming language that allows reproducibility, portability, scalability of large datassets analysis.
 - gentyspuds_wf.nf is the main script workflow to run the pipeline.  
 - params.yaml indicates all the required input files along with their paths.
 The file params.yaml provides a convenient way to feed the workflow with the input data, especially when there are multiple parameters as it is the case.
 
 ## Pipeline Outputs
-The main output directory contains a sum-report file, which is table with the last columns being the enterovirus genotypes for each sample. There is a subdirectory for each sample that stores various files including annotated phylogenetic trees, Blast alignment report, average nucleotide identity etc.
+The main output directory contains a sum-report file, which is table with the last columns being the Enterovirus genotyping results for each sample. There is a subdirectory for each sample that stores various files including annotated phylogenetic trees, Blast alignment report, average nucleotide identity etc.
