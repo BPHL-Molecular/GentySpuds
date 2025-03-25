@@ -14,10 +14,10 @@
 module purge
 
 module load nextflow apptainer
-export APPTAINER_CACHEDIR="/COLOR/PATH/YOURUSERNAME/"nextflow_temp/ # Rename parts between quotes / for storage of nexflow temporary directory
+export APPTAINER_CACHEDIR="/COLOR/PATH/YOURUSERNAME/"nextflow_temp/ # Rename parts between quotes and remove the quotes / for storage of nexflow temporary directory
 
 export NXF_APPTAINER_CACHEDIR="/COLOR/PATH/YOURUSERNAME/"nextflow_temp/
-v
+
 
 ###############################################################################
 
