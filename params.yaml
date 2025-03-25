@@ -5,7 +5,7 @@ output    : "/.../PATH/output" # provide output directory path
  
 db        : "/.../PATH/share/kraken_databases/viral_dba" # path to kraken viral datadase
 
-ev_ref_genomes: "/blue/bphl-florida/share/evvp1_seqs/vp1_nucl01" # evNrv VP1 genes downloaded (building phylogenetic trees)
+ev_ref_genomes: "/.../.../share/evvp1_seqs/vp1_nucl01" # evNrv VP1 genes downloaded (building phylogenetic trees)
 
 blastnevdb : "/.../PATH/evvp1_db/blastbd01/ev_vp1Gene_db"
 blastpevdb : "/.../PATH/evvp1_db/blastbd01/ev_vp1Prot_db"

@@ -42,14 +42,14 @@ FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, skesa, kraken, bwa, s
 git clone https://github.com/BPHL-Molecular/GentySpuds.git
 ```
 ### Create your conda environment
-Use the provided gentyspuds_environment.yaml file to execute the command below, and a conda environmment called GENTYSPUDS will be created.    
+Use the provided gentyspuds_environment.yaml file to execute the command below, and a conda environment called GENTYSPUDS will be created.    
 ```
 conda env create -f gentyspuds_environment.yml
 ```
 
 # Usage
 GentySpuds takes as input raw sequencing reads in FASTQ format, and can process gzipped files directly.  
-Make sure your all your fastq files are stored in one directory. The databases are stored in the share drive in blue on HPG. <br />
+Make sure all your fastq files are stored in one directory. The databases are stored in the share drive in blue on HPG. <br />
 Activate the created conda environment <br />
 ```
 conda activate GENTYSPUDS
@@ -59,7 +59,7 @@ The basic command to run the pipeline is set below. <br />
 nextflow run gentyspuds_wf.nf -params-file params.yaml -resume
 ```
 
-For efficiency, run the above command within supplied sbatch script. Check the script first to update email and path. Create this directory <<nextflow_temp>> to save the nextflow temporary directory.
+For efficiency, run the above command within the supplied sbatch script. Check the script first to update email and path. Create this directory <<nextflow_temp>> and edit the path to save the nextflow temporary directory.
 
 ```
 sbatch gentyspuds_jobScheduler.sh
