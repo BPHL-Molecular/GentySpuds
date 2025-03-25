@@ -35,7 +35,7 @@ gitGraph
        commit id: "MegaX"
        checkout Gentyspuds_wf
        merge phylogeny
-       commit id:"Local_Alignment" tag: Blast
+       commit id:"Local_Alignment" tag:"Blast"
        commit id: "EV_type Classification" tag:"Kraken"
     
 ```
