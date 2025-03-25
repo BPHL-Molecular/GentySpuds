@@ -9,28 +9,35 @@ and treatment.
 
 # Workflow
 ```mermaid
-sequenceDiagram
-    participant QC
-    participant Reads_trimming
-    participant Human_host_removal
-    participant QC_eport
-    participant Genome_assembly
-    participant Consensus_assembly
-    participant Taxonomic_classification
-    participant Multiple_sequence_alignment
-    participant Phylogeny
-    participant EV_type_classiffication
-    participant Local_alignment
-    QC->>Reads_trimming:Fastqc & Trimmomic
-    Reads_trimming->>Human_host_removal:sra_human_scrubber
-    Human_host_removal->>QC: QC_report
-    QC->>Taxonomic_classification:Kraken
-    QC->>Genome assembly:Skesa
-    Genome_assembly->>Consensus_assembly:Pilon
-    Consensus_assembly->>EV_type_classification:Kraken
-    Consensus_assembly->>Local_alignment:BLAST
-    Consensus_assembly->>Multiple_sequence_alignment:ClustaloW
-    Multiple_sequence_alignment->>Phylogeny:Iqtree & MegaX 
+gitGraph
+       branch Gentyspuds_wf
+       commit id: "Reads"
+       
+       branch QC
+       checkout QC
+       commit id: "Fastqc"
+       commit id: "Trimmomatic"
+       commit id: "bbtools"
+       commit id: "scrub"
+       checkout Gentyspuds_wf
+       merge QC 
+       commit id: "Taxonomic classification" tag:"Kraken"
+       branch Assembly
+       checkout Assembly
+       commit id: "Genome Assembly" tag:"Skesa"
+       commit id:"Consensus Assembly" tag:"Pilon"
+       checkout Gentyspuds_wf
+       merge Assembly
+       branch phylogeny
+       checkout phylogeny
+       commit id: "MSA" tag:"ClustalW"
+       commit id: "Iqtree"
+       commit id: "MegaX"
+       checkout Gentyspuds_wf
+       merge phylogeny
+       commit id:"Local_Alignment" tag: Blast
+       commit id: "EV_type Classification" tag:"Kraken"
+    
 ```
    
 # Software Tools implemented
