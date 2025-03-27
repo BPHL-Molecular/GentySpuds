@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 
 // Parameters
 //params.mypath = ""
-//params.vp1_metdt = "/blue/bphl-florida/t.bazile1/enterovirus_dir/devpt_dir/EV_RV_vp1GenProt_v2ed.xlsx"
+//params.vp1_metdt = ""
 //params.output = "my_temp_results"
 
 
@@ -15,22 +15,12 @@ process treeAnnotTemp {
 
     output:
     val mypath
-    //path "mega_annot/*"
-    //stdout
-    //val "${mypath}", emit: outputpath2
-    //path "pyoutputs.txt", emit: pyoutputs
-
+    
     script:
     """
         
     #!/usr/bin/env Rscript
-    #install.packages('TreeTools', repos='http://cran.us.r-project.org')
     library("ape")
-    #library("phangorn") # linked treetool
-    #library(phytools)
-    #library("TreeTools") # to get tip label ,linked to phangorn
-    #library(diversitree)
-    #library(geiger)
     library(ggtree)
     library("ggplot2")
     #library(writexl)
@@ -40,24 +30,16 @@ process treeAnnotTemp {
     library(tidyverse)
     library(fs)# to find files in path
     library(TAF) # to make dir
-    #items = "${mypath}".strip().split("/")
     
     # ouput directory
-    mkdir("tree_annot")
+    #mkdir("tree_annot")
     
     # Accessing the file path
     #split_path  <- function(x) if (dirname(x)==x) x else c(basename(x),split_path(dirname(x)))
     #lsubdir <- split_path("${mypath}")
     #samp_name <- lsubdir[2]
-    
-    #filepath1 = "${mypath}"+"/"+items[-1]+"_assembly/quast_results/report.tsv"
-    #phyl_tree <- "${params.output}/${mypath}/iqtree_out/${mypath}_evpub.treefile"  
-    #phyl_tree <- "${params.output}/${mypath}/"
-    #fs package x<- fs::dir_ls() Read either a *.treefile or *.nwk" tree.
-    #phyl_tree <- list.files(path = "${params.output}/${mypath}",".treefile|.nwk", include.dirs= TRUE, full.names=TRUE, recursive = TRUE)
-    #phyl_tree <- dir_ls(path = "${mypath}/", type ="file", glob = ".treefile|.nwk", recurse = TRUE)
-    #phyl_tree <- dir_ls(path = "${params.output}/${mypath}/", type ="file", glob = ".treefile|.nwk", recurse = TRUE))
-
+   
+    # Getting list tree files in the path (iqtree and megaX trees) 
     phyl_tree <- list.files(path = "${params.output}/${mypath}", pattern = ".treefile|.nwk", include.dirs= TRUE, full.names=TRUE, recursive = TRUE)
 
     # function iq_meg
@@ -123,75 +105,35 @@ process treeAnnotTemp {
         tree02[4][[1]] <- df_treeNdata2[[3]][match(tree02[4][[1]], df_treeNdata2[[1]])] # colunm 3(new tree tips) and colum 1 (original tree tips)
 
         # Annotated tree
-        ggtree(tree02) %<+% df_treeNdata2 + geom_tiplab(align=TRUE, linesize=.3, size=1.7) + theme_tree2() + xlim(NA, 12) + ggtitle("Sample ${mypath} and VP1 trains of EV and RV")
-
-        # Save tree in dir
-	#endsWith(xtree, ".treefile")
-	iq_extension <- tools::file_ext(xtree)
-        if (iq_extension == ".treefile"){
-            mkdir("${params.output}/${mypath}/iq_annottree")
-            ggsave("${params.output}/${mypath}/iq_annottree/${mypath}_iqtree.pdf", width = 8.5, height = 11, units = "in")    
-            write.csv(df_ext2,"${params.output}/${mypath}/iq_annottree/${mypath}_contig.csv", row.names = FALSE)
-            write.csv(df_evtypes2,"${params.output}/${mypath}/iq_annottree/EV_vp1metadata.csv", row.names = FALSE)
-        #else if (endsWith(xtree, ".nwk"))
-        }   else {
-            mkdir("${params.output}/${mypath}/mega_annottree")
-            ggsave("${params.output}/${mypath}/mega_annottree/${mypath}_megatree.pdf", width = 8.5, height = 11, units = "in")
-            write.csv(df_ext2,"${params.output}/${mypath}/mega_annottree/${mypath}_contig.csv", row.names = FALSE)
-            write.csv(df_evtypes2,"${params.output}/${mypath}/mega_annottree/EV_vp1metadata.csv", row.names = FALSE)
-        }
+        atree <- ggtree(tree02) %<+% df_treeNdata2 + geom_tiplab(align=TRUE, linesize=.3, size=1.7) + theme_tree2() + xlim(NA, 12) + ggtitle("Sample ${mypath} and VP1 trains of EV and RV")
+        
+        # Save metadata files
+	return(atree)
+        
     }
 
     for (i in 1:length(phyl_tree)){
-        if (!is.na(phyl_tree[i])){
-            iq_meg(phyl_tree[i])
-           
-	    }
+        if (endsWith(phyl_tree[[i]], ".treefile")){
+        pp = iq_meg(phyl_tree[[i]])
+        mkdir("${params.output}/${mypath}/iq_treeAnnot")
+        ggsave("${params.output}/${mypath}/iq_treeAnnot/${mypath}_iqtree.pdf", width = 8.5, height = 11, units = "in")
+        }else{
+        qq = iq_meg(phyl_tree[[i]])
+        mkdir("${params.output}/${mypath}/mega_treeAnnot")
+        ggsave("${params.output}/${mypath}/mega_treeAnnot/${mypath}_megatree.pdf", width = 8.5, height = 11, units = "in")
+        }
+
     }
-    
-    #write.csv(df_treeNdata2,"${params.output}/EV_vp1NsampleMdt.csv", row.names = FALSE)
+      
     """
 }
+
 
 /*
 workflow {
 
     treeAnnotTemp(params.mypath)
-
 }
-
-
-
-
-    # Adding sample ID in Species-type column in metadata
-    #df_ext1$Sample_Nuacc <- df_ext1$Nucleotide_Accession # changed on 0108
-    #Sample_Nuacc <- as.vector(df_ext1$Nucleotide_Accession)
-    #df_ext1p <- cbind(df_ext1, Sample_Nuacc) 
-    
-    df_ext1 <- df_ext1 %>% mutate(Sample_Nuacc = Nucleotide_Accession)
-    # Select needed columns (Sample_Nuacc replaces Species_type)
-    df_ext2 <- select(df_ext1, Nucleotide_Accession, AA_Accession, Sample_Nuacc, Genotype)    
-    
-    # Change column Species_Nuacc name into Species_Type
-    colnames(df_ext2)[colnames(df_ext2) == "Sample_Nuacc"] <- "Species_Type"
-        
-    # Combining df_ext2 and ddf_evtypes2
-    df_treeNdata2 <- rbind(df_ext2, df_evtypes2)
-
-    # Changing tree tips based on df Species_Type column to see clade of sample types
-    tree02 <- tree01
-
-    TipLabels(tree01)# Nextflow has issue with tree02$tip.label
-
-    tree02$tip.label <- df_treeNdata2[[3]][match(tree02$tip.label, df_treeNdata2[[1]])] # colunm 3(new tree tips) and colum 1 (original tree tips)
-    
-    # Annotated tree   
-    ggtree(tree02) %<+% df_treeNdata2 + geom_tiplab(align=TRUE, linesize=.3, size=1.7) + theme_tree2() + xlim(NA, 12) + ggtitle("Sample ${mypath} and VP1 trains of EV and RV")
-    ggsave("${params.output}/${mypath}/${mypath}_EVtree_test.pdf", width = 8.5, height = 11, units = "in")
-    """
-}
-
-
 comments     
 */
 

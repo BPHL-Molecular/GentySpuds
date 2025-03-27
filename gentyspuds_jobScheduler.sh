@@ -6,7 +6,7 @@
 #SBATCH --job-name=gentyspuds
 #SBATCH --mail-type=NONE
 #SBATCH --cpus-per-task=24
-#SBATCH --mem=320gb
+#SBATCH --mem=200gb
 #SBATCH --time=10:00:00
 #SBATCH --output=gentyspuds.log
 #SBATCH --error=gentyspuds_%j.err
@@ -14,6 +14,7 @@
 module purge
 
 module load nextflow apptainer
+
 export APPTAINER_CACHEDIR="/COLOR/PATH/YOURUSERNAME/"nextflow_temp/ # Rename parts between quotes and remove the quotes / for storage of nexflow temporary directory
 
 export NXF_APPTAINER_CACHEDIR="/COLOR/PATH/YOURUSERNAME/"nextflow_temp/
