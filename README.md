@@ -25,6 +25,8 @@ gitGraph
        branch Assembly
        checkout Assembly
        commit id: "Genome Assembly" tag:"Skesa"
+       commit id:"Read Alignment" tag:"BWA"
+       commit id:"Sorting and Indexing" tag:"Samtools"
        commit id:"Consensus Assembly" tag:"Pilon"
        checkout Gentyspuds_wf
        merge Assembly
@@ -49,7 +51,7 @@ FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, skesa, kraken, bwa, s
 git clone https://github.com/BPHL-Molecular/GentySpuds.git
 ```
 ### Create your conda environment
-Use the provided gentyspuds_environment.yaml file to execute the command below, and a conda environment called GENTYSPUDS will be created.    
+Use the provided gentyspuds_environment.yaml file to execute the command below, and a conda environment named GENTYSPUDS will be created.    
 ```
 conda env create -f gentyspuds_environment.yml
 ```
@@ -66,7 +68,7 @@ The basic command to run the pipeline is set below. <br />
 nextflow run gentyspuds_wf.nf -params-file params.yaml -resume
 ```
 
-For efficiency, run the above command within the supplied sbatch script. Check the script first to update email and path. Create this directory <<nextflow_temp>> and edit the path to save the nextflow temporary directory.
+For efficiency, run the above command within the supplied sbatch script. Check the script first to update email and paths. Create this directory <<nextflow_temp>> and edit the path to save the nextflow temporary storage/cache directory.
 
 ```
 sbatch gentyspuds_jobScheduler.sh
