@@ -21,7 +21,7 @@ process mega_aln{
     """     
     # Multiple alignment btw sample-assemblies and ref genomes
     mkdir -p ${params.output}/${xp}/mega_out/mega_aln #
-    megacc -a ${params.mao4aln} -d ${params.output}/${xp}/ev_vp1/${xp}_vp1_corr.fasta -o ${params.output}/${xp}/mega_out/mega_aln/EV_vp1_aln.meg
+    megacc -a ${params.mao} -d ${params.output}/${xp}/ev_vp1/${xp}_vp1_corr.fasta -o ${params.output}/${xp}/mega_out/mega_aln/${xp}_aln.meg
     # May delete vp1 fasta sequences
     # rm ${params.output}/${xp}/ev_vp1/*.fasta 
        

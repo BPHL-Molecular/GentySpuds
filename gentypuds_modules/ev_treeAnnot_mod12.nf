@@ -15,11 +15,12 @@ process treeAnnotTemp {
 
     output:
     val mypath
-    
+
     script:
     """
         
     #!/usr/bin/env Rscript
+    
     library("ape")
     library(ggtree)
     library("ggplot2")
@@ -30,6 +31,7 @@ process treeAnnotTemp {
     library(tidyverse)
     library(fs)# to find files in path
     library(TAF) # to make dir
+    #items = "${mypath}".strip().split("/")
     
     # ouput directory
     #mkdir("tree_annot")
@@ -37,13 +39,12 @@ process treeAnnotTemp {
     # Accessing the file path
     #split_path  <- function(x) if (dirname(x)==x) x else c(basename(x),split_path(dirname(x)))
     #lsubdir <- split_path("${mypath}")
-    #samp_name <- lsubdir[2]
-   
-    # Getting list tree files in the path (iqtree and megaX trees) 
+    #samp_name <- lsubdir[1]
+
     phyl_tree <- list.files(path = "${params.output}/${mypath}", pattern = ".treefile|.nwk", include.dirs= TRUE, full.names=TRUE, recursive = TRUE)
 
     # function iq_meg
-    iq_meg <- function(xtree){
+    iq_meg <- function(xtree,dir4metdt){
         tree01 <- read.tree(xtree)
      
         # Getting tree tip labels *****
@@ -108,31 +109,36 @@ process treeAnnotTemp {
         atree <- ggtree(tree02) %<+% df_treeNdata2 + geom_tiplab(align=TRUE, linesize=.3, size=1.7) + theme_tree2() + xlim(NA, 12) + ggtitle("Sample ${mypath} and VP1 trains of EV and RV")
         
         # Save metadata files
-	return(atree)
-        
+        file_name_1 <- paste0(dir4metdt, "/${mypath}_contigNvp1.csv")
+        file_name_2<- paste0(dir4metdt, "/EV_vp1metadata.csv")
+        write.csv(df_treeNdata2, file = file_name_1, row.names = FALSE)
+        write.csv(df_evtypes2, file = file_name_2, row.names = FALSE)
+
+        return(atree)
     }
 
+    dir4metdt <- "${params.output}/${mypath}"
     for (i in 1:length(phyl_tree)){
         if (endsWith(phyl_tree[[i]], ".treefile")){
-        pp = iq_meg(phyl_tree[[i]])
+        pp = iq_meg(phyl_tree[[i]],dir4metdt=dir4metdt)
         mkdir("${params.output}/${mypath}/iq_treeAnnot")
         ggsave("${params.output}/${mypath}/iq_treeAnnot/${mypath}_iqtree.pdf", width = 8.5, height = 11, units = "in")
         }else{
-        qq = iq_meg(phyl_tree[[i]])
+        qq = iq_meg(phyl_tree[[i]],dir4metdt=dir4metdt)
         mkdir("${params.output}/${mypath}/mega_treeAnnot")
         ggsave("${params.output}/${mypath}/mega_treeAnnot/${mypath}_megatree.pdf", width = 8.5, height = 11, units = "in")
         }
-
     }
-      
+
+    
+    
+    
+    #write.csv(df_treeNdata2,"${params.output}/EV_vp1NsampleMdt.csv", row.names = FALSE)
     """
 }
 
-
 /*
 workflow {
-
-    treeAnnotTemp(params.mypath)
 }
 comments     
 */
