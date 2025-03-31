@@ -22,7 +22,7 @@ process mega_treeMod{
     # Multiple alignment btw sample-assemblies and ref genomes
     mkdir -p ${params.output}/${xp}/mega_out/mega_tree #
     #megacc -a ${params.mao2} -d ${params.output}/${xp}/mega_out/mega_aln/EV_vp1_aln.meg -o ${params.output}/${xp}/mega_out/mega_tree
-    apptainer  exec docker://pegi3s/megax_cc:latest megacc -a ${params.mao2} -d ${params.output}/${xp}/mega_out/mega_aln/${xp}_aln.meg -o ${params.output}/${xp}/mega_out/mega_tree
+    apptainer  exec docker://pegi3s/megax_cc:latest megacc -a ${params.mao4tree} -d ${params.output}/${xp}/mega_out/mega_aln/${xp}_aln.meg -o ${params.output}/${xp}/mega_out/mega_tree
     # May delete vp1 fasta sequences
     # rm ${params.output}/${xp}/ev_vp1/*.fasta 
        
