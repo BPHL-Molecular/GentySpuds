@@ -73,7 +73,7 @@ For efficiency, run the above command within the supplied sbatch script. Check t
 ```
 sbatch gentyspuds_jobScheduler.sh
 ``` 
-
+Note the two excel files in the directory are provided annotate phylogenetic trees. "EV_RV_vp1GenProt_v2ed.xlsx" works with vp1_nucl01 while EV_RV_vp1GenProt_v3.xlsx with "vp1_nucl02" genomes of the capsid protein vp1. 
 ## Overview of the arguments
 - nextflow is a workflow programming language that allows reproducibility, portability, scalability of large datasets analysis.
 - gentyspuds_wf.nf is the main script workflow to run the pipeline.  
