@@ -73,13 +73,13 @@ For efficiency, run the above command within the supplied sbatch script. Check t
 ```
 sbatch gentyspuds_jobScheduler.sh
 ``` 
-Note the two excel files in the directory are provided to annotate phylogenetic trees. "EV_RV_vp1GenProt_v2ed.xlsx" works with vp1_nucl01 while EV_RV_vp1GenProt_v3.xlsx with "vp1_nucl02" genomes of the capsid protein vp1. 
+Note the two Excel files in the directory are provided to annotate phylogenetic trees. "EV_RV_vp1GenProt_v2ed.xlsx" works with vp1_nucl01 while EV_RV_vp1GenProt_v3.xlsx with "vp1_nucl02" genomes of the capsid protein vp1. 
 ## Overview of the arguments
-- nextflow is a workflow programming language that allows reproducibility, portability, scalability of large datasets analysis.
-- gentyspuds_wf.nf is the main script workflow to run the pipeline.  
-- params.yaml indicates all the required input files along with their paths.
-- asbler is an optional argument (in the params.yaml file) to change assembly software (megahit or skesa). Megahit is the default assembler - when <asbler> is not used. Skesa requires higher sequencing depth, thus some samples may be left out.
-The file params.yaml provides a convenient way to feed the workflow with the input data, especially when there are multiple parameters as it is the case.
+- <<nextflow>> is a workflow programming language that allows reproducibility, portability, scalability of large datasets analysis.
+- <<gentyspuds_wf.nf>> is the main script workflow to run the pipeline.  
+- <<params.yaml>> indicates all the required input files along with their paths.
+- <<asbler>> is an optional argument (in the params.yaml file) to change assembly software (megahit or skesa). Megahit is the default assembler - when <<asbler>> is not used. Skesa requires higher sequencing depth, thus some samples may be left out.
+- The file params.yaml provides a convenient way to feed the workflow with the input data, especially when there are multiple parameters as it is the case.
 
 ## Pipeline Outputs
-The main output directory contains a sum-report file, which is table with the last columns being the Enterovirus genotyping results for each sample. There is a subdirectory for each sample that stores various files including annotated phylogenetic trees, Blast alignment report, average nucleotide identity etc.
+The main output directory contains a sum-report file, which is a table with the last two columns being the Enterovirus genotyping result and percentage for each sample. There is a subdirectory for each sample that stores various files including annotated phylogenetic trees, Blast alignment report, average nucleotide identity etc.
