@@ -15,7 +15,7 @@ process bwa_aln_proc {
     """
     mkdir ${params.output}/${samp}/mappings     
     # Aligning pe reads
-    bwa mem -t $task.cpus ${params.output}/${samp}/skesa_dnovo/${samp}.skesa.fa ${params.output}/${samp}/${samp}_clean_1.fq.gz ${params.output}/${samp}/${samp}_clean_2.fq.gz > ${params.output}/${samp}/mappings/${samp}.sam
+    bwa mem -t $task.cpus ${params.output}/${samp}/dnovo_out/${samp}_contigs.fa ${params.output}/${samp}/${samp}_clean_1.fq.gz ${params.output}/${samp}/${samp}_clean_2.fq.gz > ${params.output}/${samp}/mappings/${samp}.sam
         
     """
     }

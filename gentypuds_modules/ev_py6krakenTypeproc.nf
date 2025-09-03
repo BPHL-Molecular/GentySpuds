@@ -30,7 +30,7 @@ process kraken_gtypeproc {
             for line in kreport:
                 # rank code is the fourth field
                 fields = line.strip().split('\t')
-                if len(fields) >= 4 and fields[3].strip() == 'S1':
+                if len(fields) >= 4 and fields[3].strip() == 'S2':
                     percentage = float(fields[0].strip())
                     taxonomic_name = fields[5].strip()
                          

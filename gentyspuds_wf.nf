@@ -89,7 +89,7 @@ include {scrub as scrub_ev } from './gentypuds_modules/ev_scrub.nf'
 include {FASTQC2 as FASTQC2_clean } from './gentypuds_modules/ev_gen_fastqc2.nf'
 include {scrub2} from './gentypuds_modules/ev_scrub2.nf'
 include {kraken as kraken_ev} from './gentypuds_modules/ev_kraken.nf'
-include {skesa_asbl as skesa_asbl_ev} from './gentypuds_modules/ev_skesa_dnovo.nf'
+include {dnovo_asbl as dnovo_asbl_ev} from './gentypuds_modules/ev_dnovo_asb.nf'
 include {bwa_INDEX_each} from './gentypuds_modules/ev_bwaIndexEach.nf'
 include {bwa_aln_proc} from './gentypuds_modules/ev_aln_proc.nf'
 include {samtools} from './gentypuds_modules/ev_sam_bam_sort.nf'
@@ -145,14 +145,14 @@ ch_multqc = multiqc(ch_fast_clean) // all qc
 ch_kraken =  kraken_ev(ch_fast_clean)
 
 // Assembly and consensus
-ch_skesa = skesa_asbl_ev(ch_fast_clean)
-ch_bwaidx_each = bwa_INDEX_each(ch_skesa)
+ch_dnovo = dnovo_asbl_ev(ch_fast_clean)
+ch_bwaidx_each = bwa_INDEX_each(ch_dnovo)
 ch_join = ch_fast_clean.join(ch_bwaidx_each) // sequences  and  genome index
 
 //Alignment
 ch_aln = bwa_aln_proc(ch_join) // bwa alignment
 ch_sam_bam = samtools(ch_aln) // sam to  bam and index
-ch_join_cons = ch_sam_bam.join(ch_skesa)
+ch_join_cons = ch_sam_bam.join(ch_dnovo)
 
 ch_pilon = pilon(ch_join_cons)
 ch_quast = quast(ch_pilon) // assembly metrics

@@ -24,7 +24,7 @@ gitGraph
        commit id: "Taxonomic classification" tag:"Kraken"
        branch Assembly
        checkout Assembly
-       commit id: "Genome Assembly" tag:"Skesa"
+       commit id: "Genome Assembly" tag:" Megahit | Skesa"
        commit id:"Read Alignment" tag:"BWA"
        commit id:"Sorting and Indexing" tag:"Samtools"
        commit id:"Consensus Assembly" tag:"Pilon"
@@ -33,17 +33,17 @@ gitGraph
        branch phylogeny
        checkout phylogeny
        commit id: "MSA" tag:"ClustalW"
-       commit id: "Iqtree"
-       commit id: "MegaX"
+       commit id: "Phylogenetic tree" tag: "Iqtree"
+       commit id: "Alignment and Tree" tag: "MegaX"
        checkout Gentyspuds_wf
        merge phylogeny
        commit id:"Local_Alignment" tag:"Blast"
-       commit id: "EV_type Classification" tag:"Kraken"
+       commit id: "EV_typing Classification" tag:"Kraken"
     
 ```
    
 # Software Tools implemented
-FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, skesa, kraken, bwa, samtools, pilon, quast, Blast, clustalo, iqtree, MegaX etc. 
+FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, Megahit, skesa, kraken, bwa, samtools, pilon, quast, Blast, clustalo, iqtree, MegaX etc. 
 
 # Installation
 ### Clone repository
@@ -73,11 +73,12 @@ For efficiency, run the above command within the supplied sbatch script. Check t
 ```
 sbatch gentyspuds_jobScheduler.sh
 ``` 
-Note the two excel files in the directory are provided annotate phylogenetic trees. "EV_RV_vp1GenProt_v2ed.xlsx" works with vp1_nucl01 while EV_RV_vp1GenProt_v3.xlsx with "vp1_nucl02" genomes of the capsid protein vp1. 
+Note the two excel files in the directory are provided to annotate phylogenetic trees. "EV_RV_vp1GenProt_v2ed.xlsx" works with vp1_nucl01 while EV_RV_vp1GenProt_v3.xlsx with "vp1_nucl02" genomes of the capsid protein vp1. 
 ## Overview of the arguments
 - nextflow is a workflow programming language that allows reproducibility, portability, scalability of large datasets analysis.
 - gentyspuds_wf.nf is the main script workflow to run the pipeline.  
 - params.yaml indicates all the required input files along with their paths.
+- asbler is an optional argument (in the params.yaml file) to change assembly software (megahit or skesa). Megahit is the default assembler - when <asbler> is not used. Skesa requires higher sequencing depth, thus some samples may be left out.
 The file params.yaml provides a convenient way to feed the workflow with the input data, especially when there are multiple parameters as it is the case.
 
 ## Pipeline Outputs

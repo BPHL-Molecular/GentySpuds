@@ -13,7 +13,7 @@ process bwa_INDEX_each {
                
     script:
     """
-    bwa index -a is ${params.output}/${samp}/skesa_dnovo/${samp}.skesa.fa
+    bwa index -a is ${params.output}/${samp}/dnovo_out/${samp}_contigs.fa
        
     """
 }
