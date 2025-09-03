@@ -1,6 +1,12 @@
 # GentySpuds
 A web-deployed pipeline to seek genotyping for Enterovirus.
+
+### <span style="color: red;">Disclaimer:</span> results of pipeline are intended for research use only and obtained by procedures that were not CLIA validated.
 ## An enterovirus is a small and enveloped mRNA virus that can causes infections in people of all ages.
+
+## Resource requirement
+For one sample the pipeline requires 8 cpus hours and approximately 2.5GB of memory. You may need to increase those numbers as you get more samples.
+Iqtree and Megatree use significant amount of resources.
 
 # Introduction
 Genotyping is a way of putting a virus into categories based on similar genes.
@@ -42,7 +48,7 @@ gitGraph
     
 ```
    
-# Software Tools implemented
+# Software Tools implemented/Dependencies
 FASTQC, trimmomatic, bbtools, sra_human_scrubber, Multiqc, Megahit, skesa, kraken, bwa, samtools, pilon, quast, Blast, clustalo, iqtree, MegaX etc. 
 
 # Installation
